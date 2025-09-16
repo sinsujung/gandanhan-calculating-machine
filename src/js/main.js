@@ -17,10 +17,9 @@
 window.onload = function() {
 
     const isOutNum = document.getElementById("output-num");
-    
-    const entryNum = 0;
-    
-    const resultNum = 0;
+    const entryNum = 0; // 초기화 값
+    const tempNum = 0; // temp 값(지금까지 계산된 값)
+    const resultNum = 0; // 총 계산 결과 값
     
     
     
