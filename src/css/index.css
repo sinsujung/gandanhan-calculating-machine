@@ -39,3 +39,31 @@ html, body {
     width: 30px;
     height: 30px;
 }
+
+#num-button {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    top: 330px;
+    left: 40%;
+    flex-direction: column;    /* 줄들을 세로로 정렬 */
+    gap: 10px;  
+}
+#num-button button {
+    width: 600px;
+    height: 60px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+}
+#button0 {
+    position: absolute;
+    left: 34%;
+}
+
+#num-button-first-line, #num-button-second-line
+, #num-button-third-line, #num-button-last-line {
+    display: flex;
+    justify-content: space-between;
+    width: 250px; /* ← 버튼 3개가 들어갈 수 있는 고정 크기 */
+    margin: 0 auto; /* 가운데 정렬 */
+}

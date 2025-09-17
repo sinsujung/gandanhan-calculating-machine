@@ -20,7 +20,16 @@ window.onload = function() {
     const entryNum = 0; // 초기화 값
     const tempNum = 0; // temp 값(지금까지 계산된 값)
     const resultNum = 0; // 총 계산 결과 값
-    
+    const pushNum1 = document.getElementById("button1");
+    const pushNum2 = document.getElementById("button2");
+    const pushNum3 = document.getElementById("button3");
+    const pushNum4 = document.getElementById("button4");
+    const pushNum5 = document.getElementById("button5");
+    const pushNum6 = document.getElementById("button6");
+    const pushNum7 = document.getElementById("button7");
+    const pushNum8 = document.getElementById("button8");
+    const pushNum9 = document.getElementById("button9");
+    const pushNum0 = document.getElementById("button0");
     
     
     /**
@@ -35,10 +44,10 @@ window.onload = function() {
     isOnOffButtons.textContent = "ON";
     isOnOffButtons.style.color = "red";
     isOnOffButtons.style.position = "absolute";
-    isOnOffButtons.style.left = "525px";
-    isOnOffButtons.style.top = "290px";
-    isOnOffButtons.style.width = "35px";
-    isOnOffButtons.style.height = "35px";
+    isOnOffButtons.style.left = "42.3%";
+    isOnOffButtons.style.top = "35%";
+    isOnOffButtons.style.width = "40px";
+    isOnOffButtons.style.height = "40px";
     isOnOffButtons.style.fontSize = "10px";
     isOnOffButtons.style.textAlign = "center";
 
@@ -76,10 +85,10 @@ window.onload = function() {
         clearButton.textContent = "C";
         clearButton.style.backgroundColor = "grey";
         clearButton.style.position = "absolute";
-        clearButton.style.left = "305px";
-        clearButton.style.top = "290px";
-        clearButton.style.width = "35px";
-        clearButton.style.height = "35px";
+        clearButton.style.left = "56.3%";
+        clearButton.style.top = "35%";
+        clearButton.style.width = "40px";
+        clearButton.style.height = "40px";
         clearButton.style.fontSize = "10px";
         clearButton.style.textAlign = "center";
 
@@ -95,4 +104,78 @@ window.onload = function() {
     });
         
         document.getElementById("button-parents").appendChild(clearButton);
+
+    /**
+     * + 버튼 생성
+     */
+
+    const sumButton = document.createElement('button');
+
+    sumButton.textContent = "+";
+    sumButton.style.width = "40px";
+    sumButton.style.height = "40px";
+    sumButton.style.position = "absolute";
+    sumButton.style.top = "35%";
+    sumButton.style.left = "45.3%";
+
+    sumButton.addEventListener('click', () => {
+        tempNum += 0;
+        
+    });
+
+    document.getElementById("button-parents").appendChild(sumButton);
+
+    /**
+     * 숫자 버튼 생성
+     */
+
+    //button1
+    const button1 = document.createElement('button');
+    button1.textContent = "1";
+    button1.style.width = "60px";
+    button1.style.height = "60px";
+
+    //click event
+    button1.addEventListener('click', () => {
+        console.log("1");
+    });
+    document.getElementById("num-button-first-line").appendChild(button1);
+
+    //button2
+    const button2 = document.createElement('button');
+    button2.textContent = "2";
+    button2.style.width = "60px";
+    button2.style.height = "60px";
+
+    //click event
+    button2.addEventListener('click', () => {
+        console.log("2");
+    });
+    document.getElementById("num-button-first-line").appendChild(button2);
+    
+    //button3
+    const button3 = document.createElement('button');
+    button3.textContent = "3";
+    button3.style.width = "60px";
+    button3.style.height = "60px";
+
+    //click event
+    button3.addEventListener('click', () => {
+        console.log("3");
+    });
+    document.getElementById("num-button-first-line").appendChild(button3);
+
+    //button4
+    const button4 = document.createElement('button');
+    button4.textContent = "4";
+    button4.style.width = "60px";
+    button4.style.height = "60px";
+    
+
+    //click event
+    button4.addEventListener('click', () => {
+        console.log("4");
+    });
+    document.getElementById("num-button-second-line").appendChild(button4);
+
 }
