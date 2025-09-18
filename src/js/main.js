@@ -16,6 +16,7 @@
  * 
  * 
  * 2025.09.18 -> on/off 기능 , 두자리 이상 숫자 출력하기, 입력중이던 숫자 초기화하기 (button1로만 작업 완료)
+ * 계산기 켜고 1, 1 + 1 하면 12 잘 출력되는 상태 이후 1 또누르면 111이 되는 오류 상태
  */ 
 let isOutNum = document.getElementById("output-num");
 let tempNum = null;// temp 값(지금까지 계산된 값)
@@ -171,8 +172,10 @@ window.onload = function() {
                 tempNum = Number(stringNum);
                 isOutNum.textContent = `${tempNum}`;
             }
-            else {
+            else if(sumButtonState == true){
                 tempNum += Number(num1);
+                isOutNum.textContent = `${tempNum}`;
+                sumButtonState = false;
             }
         }
         return tempNum;
