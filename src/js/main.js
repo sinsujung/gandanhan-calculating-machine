@@ -12,40 +12,27 @@
  * 연산자 버튼 눌렀을 때 각각의 이벤트 실행하도록
  * 
  * ce 버튼 이벤트 수정
- */
-
+ */ 
+let isOutNum = document.getElementById("output-num");
+let tempNum = null;// temp 값(지금까지 계산된 값)
+const entryNum = 0; // 초기화 값
+let stringNum = ""; // 총 계산 결과 값
+if(tempNum != null) {
+    isOutNum.textContent = `${tempNum}`;
+}
 window.onload = function() {
 
-    const isOutNum = document.getElementById("output-num");
-    const entryNum = 0; // 초기화 값
-    const tempNum = 0; // temp 값(지금까지 계산된 값)
-    const resultNum = 0; // 총 계산 결과 값
-    const pushNum1 = document.getElementById("button1");
-    const pushNum2 = document.getElementById("button2");
-    const pushNum3 = document.getElementById("button3");
-    const pushNum4 = document.getElementById("button4");
-    const pushNum5 = document.getElementById("button5");
-    const pushNum6 = document.getElementById("button6");
-    const pushNum7 = document.getElementById("button7");
-    const pushNum8 = document.getElementById("button8");
-    const pushNum9 = document.getElementById("button9");
-    const pushNum0 = document.getElementById("button0");
-    
-    
     /**
      * on/off 상태 & on/off 버튼 생성
      * on 상태 -> true 
      * off 상태 -> false
      * */ 
-    var isOnOffState = false;
+    let isOnOffState = false;
     
     const isOnOffButtons = document.createElement("button");
     
     isOnOffButtons.textContent = "ON";
     isOnOffButtons.style.color = "red";
-    isOnOffButtons.style.position = "absolute";
-    isOnOffButtons.style.left = "42.3%";
-    isOnOffButtons.style.top = "35%";
     isOnOffButtons.style.width = "40px";
     isOnOffButtons.style.height = "40px";
     isOnOffButtons.style.fontSize = "10px";
@@ -57,21 +44,27 @@ window.onload = function() {
             
             if(isOnOffState == false) {
                 isOnOffState = true;
+                console.log(isOnOffState);
                 isOnOffButtons.textContent = "OFF"
                 isOnOffButtons.style.backgroundColor = "red";
                 isOnOffButtons.style.color = "white";
-                isOutNum.textContent = entryNum;
+                isOutNum.textContent = 0;
+                tempNum = 0;
+                console.log("tempNum  = " + tempNum);
             }
             else if(isOnOffState == true) {
                 isOnOffState = false;
+                console.log(isOnOffState);
                 isOnOffButtons.textContent = "ON"
                 isOnOffButtons.style.color = "red";
                 isOnOffButtons.style.backgroundColor = "white";
                 isOutNum.textContent = null;
+                tempNum = null;
+                console.log("tempNum  = " + tempNum);
             }
         });
         
-        document.getElementById("button-parents").appendChild(isOnOffButtons);
+        
         
     /**
      * 초기화 상태 & ce 버튼 생성
@@ -84,9 +77,6 @@ window.onload = function() {
 
         clearButton.textContent = "C";
         clearButton.style.backgroundColor = "grey";
-        clearButton.style.position = "absolute";
-        clearButton.style.left = "56.3%";
-        clearButton.style.top = "35%";
         clearButton.style.width = "40px";
         clearButton.style.height = "40px";
         clearButton.style.fontSize = "10px";
@@ -103,79 +93,209 @@ window.onload = function() {
         }
     });
         
-        document.getElementById("button-parents").appendChild(clearButton);
 
     /**
      * + 버튼 생성
      */
 
+    // + 버튼 상태
+    var sumButtonState = false;
     const sumButton = document.createElement('button');
 
     sumButton.textContent = "+";
     sumButton.style.width = "40px";
     sumButton.style.height = "40px";
-    sumButton.style.position = "absolute";
-    sumButton.style.top = "35%";
-    sumButton.style.left = "45.3%";
 
     sumButton.addEventListener('click', () => {
+        sumButtonState = true;
         tempNum += 0;
-        
     });
 
-    document.getElementById("button-parents").appendChild(sumButton);
+    /**
+     * . 버튼 생성
+     */
+    const sosujumButton = document.createElement('button');
 
+    sosujumButton.textContent = ".";
+    sosujumButton.style.width = "60ox";
+    sosujumButton.style.height = "60px";
+
+    sosujumButton.addEventListener('click', () => {
+        return ".";
+    });
+    /**
+     * = 버튼 생성
+     */
+    const resultButton = document.createElement('button');
+
+    resultButton.textContent = "=";
+    resultButton.style.width = "60px";
+    resultButton.style.height = "60px";
+
+    resultButton.addEventListener('click', () => {
+        tempNum = Number(stringNum);
+        console.log(tempNum);
+        return tempNum;
+    });
+    document.getElementById("function-button").appendChild(clearButton);
+    document.getElementById("function-button").appendChild(sumButton);
+    document.getElementById("function-button").appendChild(isOnOffButtons);
     /**
      * 숫자 버튼 생성
      */
 
     //button1
     const button1 = document.createElement('button');
+    const num1 = button1.value = "1";
     button1.textContent = "1";
     button1.style.width = "60px";
     button1.style.height = "60px";
 
+
     //click event
     button1.addEventListener('click', () => {
-        console.log("1");
+
+        if(isOnOffState == true) {
+            console.log(isOnOffState);
+            if(sumButtonState == false) {
+                console.log(sumButtonState);
+                console.log(tempNum);
+                stringNum += num1;
+                tempNum = Number(stringNum);
+            }
+            else {
+                tempNum += Number(num1);
+            }
+        }
+        return tempNum;
     });
     document.getElementById("num-button-first-line").appendChild(button1);
 
     //button2
     const button2 = document.createElement('button');
+    const num2 = button2.value = "2";
     button2.textContent = "2";
     button2.style.width = "60px";
     button2.style.height = "60px";
 
+
     //click event
     button2.addEventListener('click', () => {
-        console.log("2");
+        console.log(num2);
     });
     document.getElementById("num-button-first-line").appendChild(button2);
     
     //button3
     const button3 = document.createElement('button');
+    const num3 = button3.value = "3";
     button3.textContent = "3";
     button3.style.width = "60px";
     button3.style.height = "60px";
 
     //click event
     button3.addEventListener('click', () => {
-        console.log("3");
+        console.log(num3);
     });
     document.getElementById("num-button-first-line").appendChild(button3);
 
     //button4
     const button4 = document.createElement('button');
+    const num4 = button4.value = "4";
     button4.textContent = "4";
     button4.style.width = "60px";
     button4.style.height = "60px";
     
-
     //click event
     button4.addEventListener('click', () => {
-        console.log("4");
+        console.log(num4);
     });
     document.getElementById("num-button-second-line").appendChild(button4);
 
+    
+    //button5
+    const button5 = document.createElement('button');
+    const num5 = button5.value = "5";
+    button5.textContent = "5";
+    button5.style.width = "60px";
+    button5.style.height = "60px";
+
+    //click event
+    button5.addEventListener('click', () => {
+        console.log(num5);
+    });
+    document.getElementById("num-button-second-line").appendChild(button5);
+
+    
+    //button6
+    const button6 = document.createElement('button');
+    const num6 = button6.value = "6";
+    button6.textContent = "6";
+    button6.style.width = "60px";
+    button6.style.height = "60px";
+    
+
+    //click event
+    button6.addEventListener('click', () => {
+        console.log(num6);
+    });
+    document.getElementById("num-button-second-line").appendChild(button6);
+
+    
+    //button7
+    const button7 = document.createElement('button');
+    const num7 = button7.value = "7";
+    button7.textContent = "7";
+    button7.style.width = "60px";
+    button7.style.height = "60px";
+    
+
+    //click event
+    button7.addEventListener('click', () => {
+        console.log(num7);
+    });
+    document.getElementById("num-button-third-line").appendChild(button7);
+
+    //button8
+    const button8 = document.createElement('button');
+    const num8 = button8.value = "8";
+    button8.textContent = "8";
+    button8.style.width = "60px";
+    button8.style.height = "60px";
+    
+
+    //click event
+    button8.addEventListener('click', () => {
+        console.log(num8);
+    });
+    document.getElementById("num-button-third-line").appendChild(button8);
+
+    //button9
+    const button9 = document.createElement('button');
+    const num9 = button9.value = "9";
+    button9.textContent = "9";
+    button9.style.width = "60px";
+    button9.style.height = "60px";
+    
+
+    //click event
+    button9.addEventListener('click', () => {
+        console.log(num9);
+    });
+    document.getElementById("num-button-third-line").appendChild(button9);
+
+    //button0
+    const button0 = document.createElement('button');
+    const num0 = button0.value = "0";
+    button0.textContent = "0";
+    button0.style.width = "60px";
+    button0.style.height = "60px";
+    
+
+    //click event
+    button0.addEventListener('click', () => {
+        console.log(num0);
+    });
+    document.getElementById("num-button-last-line").appendChild(sosujumButton);
+    document.getElementById("num-button-last-line").appendChild(button0);
+    document.getElementById("num-button-last-line").appendChild(resultButton);
 }
