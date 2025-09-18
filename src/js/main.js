@@ -12,6 +12,10 @@
  * 연산자 버튼 눌렀을 때 각각의 이벤트 실행하도록
  * 
  * ce 버튼 이벤트 수정
+ * 
+ * 
+ * 
+ * 2025.09.18 -> on/off 기능 , 두자리 이상 숫자 출력하기, 입력중이던 숫자 초기화하기 (button1로만 작업 완료)
  */ 
 let isOutNum = document.getElementById("output-num");
 let tempNum = null;// temp 값(지금까지 계산된 값)
@@ -50,6 +54,7 @@ window.onload = function() {
                 isOnOffButtons.style.color = "white";
                 isOutNum.textContent = 0;
                 tempNum = 0;
+                stringNum =  "";
                 console.log("tempNum  = " + tempNum);
             }
             else if(isOnOffState == true) {
@@ -60,6 +65,7 @@ window.onload = function() {
                 isOnOffButtons.style.backgroundColor = "white";
                 isOutNum.textContent = null;
                 tempNum = null;
+                stringNum = null;
                 console.log("tempNum  = " + tempNum);
             }
         });
@@ -67,9 +73,9 @@ window.onload = function() {
         
         
     /**
-     * 초기화 상태 & ce 버튼 생성
+     * 초기화 상태 & cancle 버튼 생성
      * */ 
-    var ceState = false;
+    var cancleState = false;
         
     //clearEntry 버튼 생성
     
@@ -84,11 +90,14 @@ window.onload = function() {
 
         
     clearButton.addEventListener('click', () => {
-
+        cancleState = true;
         if (isOnOffState != false) {
-            if(ceState == false) {
-                isOutNum.textContent = entryNum;
+            if(cancleState == true) {
+                stringNum = 0;
+                isOutNum.textContent = 0;
+                cancleState = false;
                 console.log("초기화!");
+                console.log(cancleState);
             }
         }
     });
@@ -156,12 +165,11 @@ window.onload = function() {
     button1.addEventListener('click', () => {
 
         if(isOnOffState == true) {
-            console.log(isOnOffState);
             if(sumButtonState == false) {
-                console.log(sumButtonState);
                 console.log(tempNum);
                 stringNum += num1;
                 tempNum = Number(stringNum);
+                isOutNum.textContent = `${tempNum}`;
             }
             else {
                 tempNum += Number(num1);
