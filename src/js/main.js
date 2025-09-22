@@ -20,7 +20,9 @@ let tempNum = null;// temp 값(지금까지 계산된 값)
 const entryNum = 0; // 초기화 값
 let stringNum = ""; // 총 계산 결과 값
 if(tempNum != null) {
+    if(resultButtonState != false){
     isOutNum.textContent = `${tempNum}`;
+    }
 }
 window.onload = function() {
 
@@ -91,7 +93,7 @@ window.onload = function() {
         cancleState = true;
         if (isOnOffState != false) {
             if(cancleState == true) {
-                stringNum = 0;
+                stringNum = "";
                 isOutNum.textContent = 0;
                 cancleState = false;
                 console.log("초기화!");
@@ -114,8 +116,11 @@ window.onload = function() {
     sumButton.style.height = "40px";
 
     sumButton.addEventListener('click', () => {
-        sumButtonState = true;
-        tempNum += 0;
+        if (isOnOffState) {
+            tempNum = Number(stringNum);
+            sumButtonState = true;
+            stringNum = "";
+        }
     });
 
     /**
@@ -124,7 +129,7 @@ window.onload = function() {
     const sosujumButton = document.createElement('button');
 
     sosujumButton.textContent = ".";
-    sosujumButton.style.width = "60ox";
+    sosujumButton.style.width = "60px";
     sosujumButton.style.height = "60px";
 
     sosujumButton.addEventListener('click', () => {
@@ -135,14 +140,18 @@ window.onload = function() {
      */
     const resultButton = document.createElement('button');
 
+    var resultButtonState = false;
+
     resultButton.textContent = "=";
     resultButton.style.width = "60px";
     resultButton.style.height = "60px";
 
     resultButton.addEventListener('click', () => {
-        tempNum = Number(stringNum);
-        console.log(tempNum);
-        return tempNum;
+        if (isOnOffState) {
+            isOutNum.textContent = `${tempNum}`;
+            stringNum = "";
+            sumButtonState = false;
+        }
     });
     document.getElementById("function-button").appendChild(clearButton);
     document.getElementById("function-button").appendChild(sumButton);
@@ -150,306 +159,52 @@ window.onload = function() {
     /**
      * 숫자 버튼 생성
      */
-
-    //button1
-    const button1 = document.createElement('button');
-    const num1 = button1.value = "1";
-    button1.textContent = "1";
-    button1.style.width = "60px";
-    button1.style.height = "60px";
-
-
-    //click event
-    button1.addEventListener('click', () => {
-
-        if(isOnOffState == true) {
-            if(sumButtonState == false) {
-                console.log(tempNum);
-                stringNum += num1;
-                tempNum = Number(stringNum);
-                isOutNum.textContent = `${tempNum}`;
-                
+    const numButton = [];
+    const numButtons = () => {
+        for(let i=0; i < 10; i ++) {
+        const buttons = document.createElement('button');
+        buttons.value = i;
+        buttons.textContent = i;
+            if(i === 0) {
+                document.getElementById("num-button-last-line").appendChild(sosujumButton);
+                document.getElementById("num-button-last-line").appendChild(buttons);
+                document.getElementById("num-button-last-line").appendChild(resultButton);
+                numButton.push(buttons);
             }
-            else if(sumButtonState == true){
-                stringNum += num1;
-                tempNum += Number(num1);
-                isOutNum.textContent = `${tempNum}`;
-                sumButtonState = false;
-                stringNum = "";
+            else if(i < 4) {
+                document.getElementById("num-button-first-line").appendChild(buttons);
+                numButton.push(buttons);
             }
+            else if(i < 7) {
+                document.getElementById("num-button-second-line").appendChild(buttons);
+                numButton.push(buttons);
+            }
+            else if(i < 10){
+                document.getElementById("num-button-third-line").appendChild(buttons);
+                numButton.push(buttons);
+            }
+
+            buttons.addEventListener('click', () => {
+                if(isOnOffState == true) {
+                    if(sumButtonState == false) {
+                        // stringNum = "";
+                        stringNum += buttons.value;
+                        tempNum = Number(stringNum);
+                        isOutNum.textContent = `${stringNum}`;
+                    }
+                    else if(sumButtonState == true) {
+                        stringNum = buttons.value;
+                        tempNum += Number(stringNum);
+                        isOutNum.textContent = `${stringNum}`;
+                        sumButtonState = false;
+                        stringNum += "";
+                    }
+                }
+                return tempNum;
+            });
+
         }
-        return tempNum;
-    });
-    document.getElementById("num-button-first-line").appendChild(button1);
-
-    //button2
-    const button2 = document.createElement('button');
-    const num2 = button2.value = "2";
-    button2.textContent = "2";
-    button2.style.width = "60px";
-    button2.style.height = "60px";
-
-
-    //click event
-    button2.addEventListener('click', () => {
-        if(isOnOffState == true) {
-            if(sumButtonState == false) {
-                console.log(tempNum);
-                stringNum += num2;
-                tempNum = Number(stringNum);
-                isOutNum.textContent = `${tempNum}`;
-                
-            }
-            else if(sumButtonState == true){
-                stringNum += num2;
-                tempNum += Number(num2);
-                isOutNum.textContent = `${tempNum}`;
-                sumButtonState = false;
-                stringNum = "";
-            }
-        }
-        return tempNum;
-    });
-    document.getElementById("num-button-first-line").appendChild(button2);
-    
-    //button3
-    const button3 = document.createElement('button');
-    const num3 = button3.value = "3";
-    button3.textContent = "3";
-    button3.style.width = "60px";
-    button3.style.height = "60px";
-
-    //click event
-    button3.addEventListener('click', () => {
-        if(isOnOffState == true) {
-            if(sumButtonState == false) {
-                console.log(tempNum);
-                stringNum += num3;
-                tempNum = Number(stringNum);
-                isOutNum.textContent = `${tempNum}`;
-                
-            }
-            else if(sumButtonState == true){
-                stringNum += num3;
-                tempNum += Number(num3);
-                isOutNum.textContent = `${tempNum}`;
-                sumButtonState = false;
-                stringNum = "";
-            }
-        }
-        return tempNum;
-    });
-    document.getElementById("num-button-first-line").appendChild(button3);
-
-    //button4
-    const button4 = document.createElement('button');
-    const num4 = button4.value = "4";
-    button4.textContent = "4";
-    button4.style.width = "60px";
-    button4.style.height = "60px";
-    
-    //click event
-    button4.addEventListener('click', () => {
-        if(isOnOffState == true) {
-            if(sumButtonState == false) {
-                console.log(tempNum);
-                stringNum += num4;
-                tempNum = Number(stringNum);
-                isOutNum.textContent = `${tempNum}`;
-                
-            }
-            else if(sumButtonState == true){
-                stringNum += num4;
-                tempNum += Number(num4);
-                isOutNum.textContent = `${tempNum}`;
-                sumButtonState = false;
-                stringNum = "";
-            }
-        }
-        return tempNum;
-    });
-    document.getElementById("num-button-second-line").appendChild(button4);
-
-    
-    //button5
-    const button5 = document.createElement('button');
-    const num5 = button5.value = "5";
-    button5.textContent = "5";
-    button5.style.width = "60px";
-    button5.style.height = "60px";
-
-    //click event
-    button5.addEventListener('click', () => {
-        if(isOnOffState == true) {
-            if(sumButtonState == false) {
-                console.log(tempNum);
-                stringNum += num5;
-                tempNum = Number(stringNum);
-                isOutNum.textContent = `${tempNum}`;
-                
-            }
-            else if(sumButtonState == true){
-                stringNum += num5;
-                tempNum += Number(num5);
-                isOutNum.textContent = `${tempNum}`;
-                sumButtonState = false;
-                stringNum = "";
-            }
-        }
-        return tempNum;
-    });
-    document.getElementById("num-button-second-line").appendChild(button5);
-
-    
-    //button6
-    const button6 = document.createElement('button');
-    const num6 = button6.value = "6";
-    button6.textContent = "6";
-    button6.style.width = "60px";
-    button6.style.height = "60px";
-    
-
-    //click event
-    button6.addEventListener('click', () => {
-        if(isOnOffState == true) {
-            if(sumButtonState == false) {
-                console.log(tempNum);
-                stringNum += num6;
-                tempNum = Number(stringNum);
-                isOutNum.textContent = `${tempNum}`;
-                
-            }
-            else if(sumButtonState == true){
-                stringNum += num6;
-                tempNum += Number(num6);
-                isOutNum.textContent = `${tempNum}`;
-                sumButtonState = false;
-                stringNum = "";
-            }
-        }
-        return tempNum;
-    });
-    document.getElementById("num-button-second-line").appendChild(button6);
-
-    
-    //button7
-    const button7 = document.createElement('button');
-    const num7 = button7.value = "7";
-    button7.textContent = "7";
-    button7.style.width = "60px";
-    button7.style.height = "60px";
-    
-
-    //click event
-    button7.addEventListener('click', () => {
-        if(isOnOffState == true) {
-            if(sumButtonState == false) {
-                console.log(tempNum);
-                stringNum += num7;
-                tempNum = Number(stringNum);
-                isOutNum.textContent = `${tempNum}`;
-                
-            }
-            else if(sumButtonState == true){
-                stringNum += num7;
-                tempNum += Number(num7);
-                isOutNum.textContent = `${tempNum}`;
-                sumButtonState = false;
-                stringNum = "";
-            }
-        }
-        return tempNum;
-    });
-    document.getElementById("num-button-third-line").appendChild(button7);
-
-    //button8
-    const button8 = document.createElement('button');
-    const num8 = button8.value = "8";
-    button8.textContent = "8";
-    button8.style.width = "60px";
-    button8.style.height = "60px";
-    
-
-    //click event
-    button8.addEventListener('click', () => {
-        if(isOnOffState == true) {
-            if(sumButtonState == false) {
-                console.log(tempNum);
-                stringNum += num8;
-                tempNum = Number(stringNum);
-                isOutNum.textContent = `${tempNum}`;
-                
-            }
-            else if(sumButtonState == true){
-                stringNum += num8;
-                tempNum += Number(num8);
-                isOutNum.textContent = `${tempNum}`;
-                sumButtonState = false;
-                stringNum = "";
-            }
-        }
-        return tempNum;
-    });
-    document.getElementById("num-button-third-line").appendChild(button8);
-
-    //button9
-    const button9 = document.createElement('button');
-    const num9 = button9.value = "9";
-    button9.textContent = "9";
-    button9.style.width = "60px";
-    button9.style.height = "60px";
-    
-
-    //click event
-    button9.addEventListener('click', () => {
-        if(isOnOffState == true) {
-            if(sumButtonState == false) {
-                console.log(tempNum);
-                stringNum += num9;
-                tempNum = Number(stringNum);
-                isOutNum.textContent = `${tempNum}`;
-                
-            }
-            else if(sumButtonState == true){
-                stringNum += num9;
-                tempNum += Number(num9);
-                isOutNum.textContent = `${tempNum}`;
-                sumButtonState = false;
-                stringNum = "";
-            }
-        }
-        return tempNum;
-    });
-    document.getElementById("num-button-third-line").appendChild(button9);
-
-    //button0
-    const button0 = document.createElement('button');
-    const num0 = button0.value = "0";
-    button0.textContent = "0";
-    button0.style.width = "60px";
-    button0.style.height = "60px";
-    
-
-    //click event
-    button0.addEventListener('click', () => {
-        if(isOnOffState == true) {
-            if(sumButtonState == false) {
-                console.log(tempNum);
-                stringNum += num0;
-                tempNum = Number(stringNum);
-                isOutNum.textContent = `${tempNum}`;
-            }
-            else if(sumButtonState == true){
-                stringNum += num0;
-                tempNum += Number(num0);
-                isOutNum.textContent = `${tempNum}`;
-                sumButtonState = false;
-                stringNum = "";
-            }
-        }
-        return tempNum;
-    });
-    document.getElementById("num-button-last-line").appendChild(sosujumButton);
-    document.getElementById("num-button-last-line").appendChild(button0);
-    document.getElementById("num-button-last-line").appendChild(resultButton);
-}
+        return numButton;
+    }
+    numButtons();
+}    
