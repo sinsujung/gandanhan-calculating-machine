@@ -14,9 +14,6 @@
  * ce 버튼 이벤트 수정
  * 
  * 
- * 
- * 2025.09.18 -> on/off 기능 , 두자리 이상 숫자 출력하기, 입력중이던 숫자 초기화하기 (button1로만 작업 완료)
- * 계산기 켜고 1, 1 + 1 하면 12 잘 출력되는 상태 이후 1 또누르면 111이 되는 오류 상태
  */ 
 let isOutNum = document.getElementById("output-num");
 let tempNum = null;// temp 값(지금까지 계산된 값)
@@ -171,11 +168,14 @@ window.onload = function() {
                 stringNum += num1;
                 tempNum = Number(stringNum);
                 isOutNum.textContent = `${tempNum}`;
+                
             }
             else if(sumButtonState == true){
+                stringNum += num1;
                 tempNum += Number(num1);
                 isOutNum.textContent = `${tempNum}`;
                 sumButtonState = false;
+                stringNum = "";
             }
         }
         return tempNum;
@@ -192,7 +192,23 @@ window.onload = function() {
 
     //click event
     button2.addEventListener('click', () => {
-        console.log(num2);
+        if(isOnOffState == true) {
+            if(sumButtonState == false) {
+                console.log(tempNum);
+                stringNum += num2;
+                tempNum = Number(stringNum);
+                isOutNum.textContent = `${tempNum}`;
+                
+            }
+            else if(sumButtonState == true){
+                stringNum += num2;
+                tempNum += Number(num2);
+                isOutNum.textContent = `${tempNum}`;
+                sumButtonState = false;
+                stringNum = "";
+            }
+        }
+        return tempNum;
     });
     document.getElementById("num-button-first-line").appendChild(button2);
     
@@ -205,7 +221,23 @@ window.onload = function() {
 
     //click event
     button3.addEventListener('click', () => {
-        console.log(num3);
+        if(isOnOffState == true) {
+            if(sumButtonState == false) {
+                console.log(tempNum);
+                stringNum += num3;
+                tempNum = Number(stringNum);
+                isOutNum.textContent = `${tempNum}`;
+                
+            }
+            else if(sumButtonState == true){
+                stringNum += num3;
+                tempNum += Number(num3);
+                isOutNum.textContent = `${tempNum}`;
+                sumButtonState = false;
+                stringNum = "";
+            }
+        }
+        return tempNum;
     });
     document.getElementById("num-button-first-line").appendChild(button3);
 
@@ -218,7 +250,23 @@ window.onload = function() {
     
     //click event
     button4.addEventListener('click', () => {
-        console.log(num4);
+        if(isOnOffState == true) {
+            if(sumButtonState == false) {
+                console.log(tempNum);
+                stringNum += num4;
+                tempNum = Number(stringNum);
+                isOutNum.textContent = `${tempNum}`;
+                
+            }
+            else if(sumButtonState == true){
+                stringNum += num4;
+                tempNum += Number(num4);
+                isOutNum.textContent = `${tempNum}`;
+                sumButtonState = false;
+                stringNum = "";
+            }
+        }
+        return tempNum;
     });
     document.getElementById("num-button-second-line").appendChild(button4);
 
@@ -232,7 +280,23 @@ window.onload = function() {
 
     //click event
     button5.addEventListener('click', () => {
-        console.log(num5);
+        if(isOnOffState == true) {
+            if(sumButtonState == false) {
+                console.log(tempNum);
+                stringNum += num5;
+                tempNum = Number(stringNum);
+                isOutNum.textContent = `${tempNum}`;
+                
+            }
+            else if(sumButtonState == true){
+                stringNum += num5;
+                tempNum += Number(num5);
+                isOutNum.textContent = `${tempNum}`;
+                sumButtonState = false;
+                stringNum = "";
+            }
+        }
+        return tempNum;
     });
     document.getElementById("num-button-second-line").appendChild(button5);
 
@@ -247,7 +311,23 @@ window.onload = function() {
 
     //click event
     button6.addEventListener('click', () => {
-        console.log(num6);
+        if(isOnOffState == true) {
+            if(sumButtonState == false) {
+                console.log(tempNum);
+                stringNum += num6;
+                tempNum = Number(stringNum);
+                isOutNum.textContent = `${tempNum}`;
+                
+            }
+            else if(sumButtonState == true){
+                stringNum += num6;
+                tempNum += Number(num6);
+                isOutNum.textContent = `${tempNum}`;
+                sumButtonState = false;
+                stringNum = "";
+            }
+        }
+        return tempNum;
     });
     document.getElementById("num-button-second-line").appendChild(button6);
 
@@ -262,7 +342,23 @@ window.onload = function() {
 
     //click event
     button7.addEventListener('click', () => {
-        console.log(num7);
+        if(isOnOffState == true) {
+            if(sumButtonState == false) {
+                console.log(tempNum);
+                stringNum += num7;
+                tempNum = Number(stringNum);
+                isOutNum.textContent = `${tempNum}`;
+                
+            }
+            else if(sumButtonState == true){
+                stringNum += num7;
+                tempNum += Number(num7);
+                isOutNum.textContent = `${tempNum}`;
+                sumButtonState = false;
+                stringNum = "";
+            }
+        }
+        return tempNum;
     });
     document.getElementById("num-button-third-line").appendChild(button7);
 
@@ -276,7 +372,23 @@ window.onload = function() {
 
     //click event
     button8.addEventListener('click', () => {
-        console.log(num8);
+        if(isOnOffState == true) {
+            if(sumButtonState == false) {
+                console.log(tempNum);
+                stringNum += num8;
+                tempNum = Number(stringNum);
+                isOutNum.textContent = `${tempNum}`;
+                
+            }
+            else if(sumButtonState == true){
+                stringNum += num8;
+                tempNum += Number(num8);
+                isOutNum.textContent = `${tempNum}`;
+                sumButtonState = false;
+                stringNum = "";
+            }
+        }
+        return tempNum;
     });
     document.getElementById("num-button-third-line").appendChild(button8);
 
@@ -290,7 +402,23 @@ window.onload = function() {
 
     //click event
     button9.addEventListener('click', () => {
-        console.log(num9);
+        if(isOnOffState == true) {
+            if(sumButtonState == false) {
+                console.log(tempNum);
+                stringNum += num9;
+                tempNum = Number(stringNum);
+                isOutNum.textContent = `${tempNum}`;
+                
+            }
+            else if(sumButtonState == true){
+                stringNum += num9;
+                tempNum += Number(num9);
+                isOutNum.textContent = `${tempNum}`;
+                sumButtonState = false;
+                stringNum = "";
+            }
+        }
+        return tempNum;
     });
     document.getElementById("num-button-third-line").appendChild(button9);
 
@@ -304,7 +432,22 @@ window.onload = function() {
 
     //click event
     button0.addEventListener('click', () => {
-        console.log(num0);
+        if(isOnOffState == true) {
+            if(sumButtonState == false) {
+                console.log(tempNum);
+                stringNum += num0;
+                tempNum = Number(stringNum);
+                isOutNum.textContent = `${tempNum}`;
+            }
+            else if(sumButtonState == true){
+                stringNum += num0;
+                tempNum += Number(num0);
+                isOutNum.textContent = `${tempNum}`;
+                sumButtonState = false;
+                stringNum = "";
+            }
+        }
+        return tempNum;
     });
     document.getElementById("num-button-last-line").appendChild(sosujumButton);
     document.getElementById("num-button-last-line").appendChild(button0);
