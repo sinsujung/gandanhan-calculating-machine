@@ -140,8 +140,6 @@ window.onload = function() {
      */
     const resultButton = document.createElement('button');
 
-    var resultButtonState = false;
-
     resultButton.textContent = "=";
     resultButton.style.width = "60px";
     resultButton.style.height = "60px";
